@@ -13,15 +13,14 @@
 @theme {
 
     /* primary */
-    --color-orange: hsl(26, 100%, 55%);
-    --color-pale-orange: hsl(25, 100%, 94%);
+    --color-cust-orange: hsl(26, 100%, 55%);
+    --color-cust-pale-orange: hsl(25, 100%, 94%);
 
     /* Neutral */
-    --color-very-dark-blue: hsl(220, 13%, 13%);
-    --color-dark-grayish-blue: hsl(219, 9%, 45%);
-    --color-grayish-blue: hsl(220, 14%, 75%);
-    --color-light-grayish-blue: hsl(223, 64%, 98%);
-    --color-light-black: hsl(0, 0%, 75%);
+    --color-cust-blue-900: hsl(220, 13%, 13%);
+    --color-cust-graysish-blue-800: hsl(219, 9%, 45%);
+    --color-cust-grayish-blue-500: hsl(220, 14%, 75%);
+    --color-cust-grayish-blue-200: hsl(223, 64%, 98%);
 
     /* font size */
     --text-para: 16px;
@@ -29,6 +28,18 @@
     /* 400:normal, 700:bold */
 }
 
-@layer base {}
+@layer base {
+    button {
+        @apply cursor-pointer;
+    }
 
-@layer components {}
+    p {
+        @apply text-para;
+    }
+}
+
+@layer components {
+    .orange-btn {
+        @apply font-bold text-black bg-cust-orange w-full text-center py-4 rounded-xl px-6 flex gap-4 items-center justify-center;
+    }
+}

@@ -12,27 +12,91 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&display=swap" rel="stylesheet">
   <script defer src="main.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <title>Frontend Mentor | E-commerce product page</title>
 </head>
 
-<body>
-  <div>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">Collections</a></li>
-          <li><a href="#">Men</a></li>
-          <li><a href="#">Women</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+<body class="flex items-center justify-center">
+
+  <!-- overlay: 75% opacity-->
+  <div class="inset-0 bg-black/75 fixed transition-opacity z-10 hidden" id="overlay"></div>
+
+  <div class="kumbh-sans">
+    <header class="flex items-center justify-between px-6 pt-4 pb-6">
+      <div class="flex items-center gap-4">
+        <button class="size-4 text-cust-graysish-blue-800 z-30" aria-label="menu" aria-expanded="false" id="menu-btn"><i
+            class="fa-solid fa-bars text-xl" id="menu-icon"></i></button>
+        <div class="">
+          <img src="/images/logo.svg" alt="logo sneakers" class="object-contain">
+        </div>
+        <nav class="fixed left-0 -translate-x-full transform transition-transform duration-500 top-0 z-20 bg-white h-screen font-bold pt-20 pr-34 pl-6" id="menu" inert="">
+          <ul class="flex flex-col gap-6">
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+      </div>
+
+      <div class="flex items-center gap-8">
+
+        <button class="size-4 text-cust-graysish-blue-800 hover:text-black" id="cart-btn" aria-label="basket"  aria-expanded="false">
+          <i class="fa-solid fa-cart-shopping text-xl"></i>
+        </button>
+
+        <a class="size-6 cursor-pointer hover:outline hover:outline-cust-orange rounded-full" href="#"><img
+            src="/images/image-avatar.png" alt="profile pic avatar" class="object-contain h-full w-full"></a>
+      </div>
       </nav>
+
     </header>
 
-    <main>
+    <main class="">
+
+      <!-- basket -->
+      <dialog id="basket"
+        class="fixed bg-white mt-2 mx-2 rounded-xl shadow-2xl shadow-cust-grayish-blue-800 text-cust-graysish-blue-800">
+
+        <div class="font-bold pt-4 pb-6 px-6 text-black">
+          Cart
+        </div>
+
+        <hr class="text-cust-grayish-blue-500">
+
+        <div class="p-6 pb-8 flex flex-col justify-center items-center">
+
+          <div class="space-y-6 hidden" id="cart-details">
+            <div class="flex items-center gap-4">
+              <div class="size-12 rounded-md overflow-hidden"><img src="/images/image-product-1-thumbnail.jpg"
+                  alt="thumbnail image of a pair shoes in beige and white color with orange background"></div>
+              <div>
+                <p>Fall Limited Editon Sneakers</p>
+                <p>
+                  <span id="item-price">$ 125.00</span><span class="px-1">x</span><span id="num-purchased"
+                    class="pr-1">3</span><span id="total" class="font-bold text-black">$375.00</span>
+                </p>
+              </div>
+              <button class="text-cust-grayish-blue-500"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+            <button class="orange-btn">Checkout</button>
+          </div>
+
+          <div class="font-bold min-w-76 min-h-34 flex items-center justify-center">
+            Your cart is empty.
+          </div>
+
+        </div>
+
+      </dialog>
+
       <!-- shoe carasoule -->
       <article>
+
+        <div class="h-76">
+          <img src="/images/image-product-1.jpg" alt="A pair shoes in beige and white color with orange background"
+            class="object-cover h-full w-full">
+        </div>
 
         <!-- desktop shoe thumbnail images bar -->
       </article>
@@ -42,33 +106,36 @@
 
       </article>
 
-      <article>
-        <small>Sneaker Company</small>
+      <article class="px-6 py-4">
+        <small class="text-cust-graysish-blue-800 font-bold tracking-wider text-xs">SNEAKER COMPANY</small>
 
-        <h1>Fall Limited Edition Sneakers</h1>
+        <h1 class="font-bold text-3xl mt-2 mb-4">Fall Limited Edition Sneakers</h1>
 
-        <p>These low-profile sneakers are your perfect casual wear companion. Featuring a
+        <p class="text-cust-graysish-blue-800">These low-profile sneakers are your perfect casual wear companion.
+          Featuring a
           durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
 
         <!-- Price -->
-        <div>
-          <div>
-            <div>$125.00</div>
-            <span>50%</span>
+        <div class="flex justify-between my-6 items-center">
+          <div class="flex items-center gap-4">
+            <div class="font-bold text-2xl">$125.00</div>
+            <span class="text-white bg-black rounded-md font-bold px-2">50%</span>
           </div>
-          <div>
+          <div class="text-cust-graysish-blue-800 font-bold line-through">
             $250.00
           </div>
         </div>
 
         <!-- items counter -->
-        <div id="items-counter">
-          <button id="plus">-</button>
-          <span id="number">0</span>
-          <button id="minus">+</button>
+        <div id="items-counter"
+          class="bg-cust-grayish-blue-200 w-full flex justify-between items-center rounded-lg px-6 py-4 mb-5">
+          <button id="plus"><i class="fa-solid fa-minus text-cust-orange"></i></button>
+          <span id="number" class="font-bold">0</span>
+          <button id="minus"><i class="fa-solid fa-plus text-cust-orange"></i></button>
         </div>
 
-        <button>Add to cart</button>
+        <button class="shadow-xl shadow-cust-orange/30 orange-btn">
+          <i class="fa-solid fa-cart-shopping"></i> <span>Add to cart</span></button>
       </article>
 
     </main>
