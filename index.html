@@ -29,7 +29,9 @@
         <div class="">
           <img src="/images/logo.svg" alt="logo sneakers" class="object-contain">
         </div>
-        <nav class="fixed left-0 -translate-x-full transform transition-transform duration-500 top-0 z-20 bg-white h-screen font-bold pt-20 pr-34 pl-6" id="menu" inert="">
+        <nav
+          class="fixed left-0 -translate-x-full transform transition-transform duration-500 top-0 z-20 bg-white h-screen font-bold pt-20 pr-34 pl-6"
+          id="menu" inert="">
           <ul class="flex flex-col gap-6">
             <li><a href="#">Collections</a></li>
             <li><a href="#">Men</a></li>
@@ -41,7 +43,8 @@
 
       <div class="flex items-center gap-8">
 
-        <button class="size-4 text-cust-graysish-blue-800 hover:text-black" id="cart-btn" aria-label="basket"  aria-expanded="false">
+        <button class="size-4 text-cust-graysish-blue-800 hover:text-black" id="cart-btn" aria-label="basket"
+          aria-expanded="false">
           <i class="fa-solid fa-cart-shopping text-xl"></i>
         </button>
 
@@ -68,8 +71,10 @@
 
           <div class="space-y-6 hidden" id="cart-details">
             <div class="flex items-center gap-4">
-              <div class="size-12 rounded-md overflow-hidden"><img src="/images/image-product-1-thumbnail.jpg"
-                  alt="thumbnail image of a pair shoes in beige and white color with orange background"></div>
+              <div class="size-12 rounded-md overflow-hidden">
+                <img src="/images/image-product-1-thumbnail.jpg"
+                  alt="thumbnail image of a pair shoes in beige and white color with orange background">
+              </div>
               <div>
                 <p>Fall Limited Editon Sneakers</p>
                 <p>
@@ -90,12 +95,27 @@
 
       </dialog>
 
-      <!-- shoe carasoule -->
+      <!-- shoe carousel -->
       <article>
 
-        <div class="h-76">
-          <img src="/images/image-product-1.jpg" alt="A pair shoes in beige and white color with orange background"
-            class="object-cover h-full w-full">
+        <div id="carousel" class="relative" data-carousel>
+          <button id="carousel-btn" data-carousel-button="prev"
+            class="absolute top-30 left-4 bg-white rounded-full size-10 text-center" aria-label="button to previous image"><i
+              class="fa-solid fa-arrow-left"></i></button>
+          <button id="carousel-btn" data-carousel-button="next"
+            class="absolute top-30 right-4 bg-white rounded-full size-10 text-center" aria-label="button to next image"><i
+              class="fa-solid fa-arrow-right"></i></button>
+          <ul id="carousel-track"  class="overflow-hidden" data-slides>
+            <li class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg"
+                alt="shoe image #1" class="carousel-image">
+            </li>
+            <li class="slide" id="carousel-slide"><img src="/images/image-product-2.jpg" alt="shoe image #2"
+                class="carousel-image"></li>
+            <li class="slide" id="carousel-slide"><img src="/images/image-product-3.jpg" alt="shoe image #3"
+                class="carousel-image"></li>
+            <li class="slide" id="carousel-slide"><img src="/images/image-product-4.jpg" alt="shoe image #4"
+                class="carousel-image"></li>
+          </ul>
         </div>
 
         <!-- desktop shoe thumbnail images bar -->

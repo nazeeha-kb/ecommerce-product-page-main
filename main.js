@@ -6,6 +6,9 @@ const menuBtn = document.getElementById("menu-btn");
 const menuIcon = document.getElementById("menu-icon");
 const overlay = document.getElementById("overlay");
 
+const carouselSlides = document.querySelectorAll("#carousel-slide");
+const carouselButtons = document.querySelectorAll("#carousel-btn");
+
 cartBtn.addEventListener("click", () => {
     handleCartToggle();
 })
@@ -63,11 +66,11 @@ const handleMenuToggle = () => {
 // Cart toggle
 
 const handleCartToggle = () => {
-    
+
     cartBtn.classList.toggle("text-black");
     cartBtn.classList.toggle("text-cust-graysish-blue-800");
 
-     if (cartBtn.getAttribute("aria-expanded") == "false") {
+    if (cartBtn.getAttribute("aria-expanded") == "false") {
         console.log("expanded")
         cartBtn.setAttribute("aria-expanded", "true")
         basket.show()
@@ -77,5 +80,26 @@ const handleCartToggle = () => {
         cartBtn.setAttribute("aria-expanded", "false")
         basket.close()
     }
-    
+
 }
+
+// carousel slide logic
+carouselButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const offset = button.dataset.carouselButton === 'next'? 1: -1;
+        const slides = button.closest("[data-carousel]").querySelector("[data-slides]");
+        const activeSlide = slides.querySelector("[data-active]");
+        
+        // [...slides.children] converts this to array
+        let newIndex = [...slides.children].indexOf(activeSlide) + offset;
+        console.log(newIndex)
+    
+        // looping
+        if (newIndex < 0) newIndex = slides.children.length - 1
+        if (newIndex >= slides.children.length) newIndex = 0
+
+        slides.children[newIndex].dataset.active = true
+        delete activeSlide.dataset.active
+    })
+})
+

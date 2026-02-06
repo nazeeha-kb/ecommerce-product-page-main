@@ -42,4 +42,16 @@
     .orange-btn {
         @apply font-bold text-black bg-cust-orange w-full text-center py-4 rounded-xl px-6 flex gap-4 items-center justify-center;
     }
+
+    .carousel-img {
+        @apply object-cover h-full w-full ;
+    }
+
+    .slide {
+        @apply inset-0 hidden h-80;
+    }
+
+    .slide[data-active] {
+        @apply inset-0 block h-80;
+    }
 }
