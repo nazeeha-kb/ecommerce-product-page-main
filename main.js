@@ -9,6 +9,27 @@ const overlay = document.getElementById("overlay");
 const carouselSlides = document.querySelectorAll("#carousel-slide");
 const carouselButtons = document.querySelectorAll("#carousel-btn");
 
+// items counter
+const itemsCounter = document.getElementById("items-counter");
+const plusBtn = document.getElementById("plus");
+const minusBtn = document.getElementById("minus");
+const count = document.getElementById("count");
+
+// Add to cart 
+const form = document.getElementById("form");
+const addToCartBtn = document.getElementById("add-to-cart");
+const emptyCartMsg = document.getElementById("empty-cart");
+
+const cartDetails = document.getElementById("cart-details");
+const numOfItems = document.getElementById("num-of-items");
+const total = document.getElementById("total");
+
+const cartBadge = document.getElementById("cart-badge");
+
+// delete item from cart
+const deleteItemBtn = document.getElementById("delete-item")
+
+
 cartBtn.addEventListener("click", () => {
     handleCartToggle();
 })
@@ -86,14 +107,14 @@ const handleCartToggle = () => {
 // carousel slide logic
 carouselButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const offset = button.dataset.carouselButton === 'next'? 1: -1;
+        const offset = button.dataset.carouselButton === 'next' ? 1 : -1;
         const slides = button.closest("[data-carousel]").querySelector("[data-slides]");
         const activeSlide = slides.querySelector("[data-active]");
-        
+
         // [...slides.children] converts this to array
         let newIndex = [...slides.children].indexOf(activeSlide) + offset;
         console.log(newIndex)
-    
+
         // looping
         if (newIndex < 0) newIndex = slides.children.length - 1
         if (newIndex >= slides.children.length) newIndex = 0
@@ -103,3 +124,60 @@ carouselButtons.forEach(button => {
     })
 })
 
+// Items counter logic
+
+plusBtn.addEventListener("click", () => addCount())
+minusBtn.addEventListener("click", () => minusCount())
+
+const addCount = () => {
+    let currCount = Number(count.innerHTML);
+    count.innerHTML = `${currCount + 1}`
+}
+const minusCount = () => {
+    let currCount = Number(count.innerHTML);
+    if (currCount > 0) {
+        count.innerHTML = `${currCount - 1}`
+    }
+}
+
+// Add to cart
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addToCart()
+    resetForm()
+})
+
+const addToCart = () => {
+    const currCount = Number(count.innerHTML)
+
+    if (currCount == 0) {
+        emptyCartMsg.classList.add("flex");
+        emptyCartMsg.classList.remove("hidden");
+        cartDetails.classList.add("hidden")
+        cartBadge.classList.add("hidden")
+    }
+    else {
+        emptyCartMsg.classList.remove("flex");
+        emptyCartMsg.classList.add("hidden");
+        cartDetails.classList.remove("hidden")
+        cartBadge.classList.remove("hidden");
+
+        numOfItems.innerHTML = `${currCount}`;
+        total.innerHTML = `$${currCount * 125}`
+        cartBadge.innerHTML = `${currCount}`
+    }
+
+}
+
+const resetForm = () => {
+    count.innerHTML = `0`
+}
+
+// Delete item from cart
+
+deleteItemBtn.addEventListener("click", () => {
+    emptyCartMsg.classList.add("flex");
+    emptyCartMsg.classList.remove("hidden");
+    cartDetails.classList.add("hidden")
+    cartBadge.classList.add("hidden")
+})

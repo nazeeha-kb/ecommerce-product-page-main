@@ -40,18 +40,38 @@
 
 @layer components {
     .orange-btn {
-        @apply font-bold text-black bg-cust-orange w-full text-center py-4 rounded-xl px-6 flex gap-4 items-center justify-center;
+        @apply font-bold text-black bg-cust-orange hover:bg-cust-orange/60 w-full text-center py-4 rounded-xl px-6 flex gap-4 items-center justify-center;
     }
 
     .carousel-img {
-        @apply object-cover h-full w-full ;
+        @apply md:object-contain object-cover h-full w-full;
     }
 
     .slide {
-        @apply inset-0 hidden h-80;
+        @apply inset-0 md:h-auto sm:h-100 hidden h-80;
     }
 
     .slide[data-active] {
-        @apply inset-0 block h-80;
+        @apply inset-0 md:h-auto sm:h-100 block h-80 md:rounded-2xl md:overflow-hidden;
     }
+
+    .thumbnail-img {
+        @apply object-contain;
+    }
+
+    .thumbnail-img-cont {
+        @apply rounded-lg overflow-hidden cursor-pointer relative;
+    }
+
+    .thumbnail-overlay {
+        @apply group-hover:bg-cust-grayish-blue-200/60 absolute top-0 outline h-full w-full;
+    }
+}
+
+.thumbnail-img-cont[data-active]{
+    @apply outline-2 outline-cust-orange;
+}
+
+.thumbnail-img-cont[data-active] > .thumbnail-overlay {
+    @apply bg-cust-grayish-blue-200/60;
 }
