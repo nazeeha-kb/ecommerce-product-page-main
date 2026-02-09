@@ -30,10 +30,6 @@ const cartBadge = document.getElementById("cart-badge");
 const deleteItemBtn = document.getElementById("delete-item")
 
 
-cartBtn.addEventListener("click", () => {
-    handleCartToggle();
-})
-
 // Menu toggle
 
 menuBtn.addEventListener("click", () => {
@@ -83,8 +79,11 @@ const handleMenuToggle = () => {
     }
 
 }
-
 // Cart toggle
+
+cartBtn.addEventListener("click", (e) => {
+    handleCartToggle();
+})
 
 const handleCartToggle = () => {
 
@@ -92,17 +91,34 @@ const handleCartToggle = () => {
     cartBtn.classList.toggle("text-cust-graysish-blue-800");
 
     if (cartBtn.getAttribute("aria-expanded") == "false") {
-        console.log("expanded")
         cartBtn.setAttribute("aria-expanded", "true")
         basket.show()
     }
     else {
-        console.log("collapsed")
         cartBtn.setAttribute("aria-expanded", "false")
         basket.close()
     }
 
 }
+
+// Close cart and menu on outside click
+document.addEventListener("click", (e) => {
+    // menu
+    const isClickInsideMenu = menu.contains(e.target);
+    const isClickOnMenuIcon = menuIcon.contains(e.target);
+
+    // cart
+    const isClickInsideCart = basket.contains(e.target);
+    const isClickOnBtn = cartBtn.contains(e.target);
+
+    if (!isClickInsideCart && !isClickOnBtn && cartBtn.getAttribute("aria-expanded") === "true") {
+        handleCartToggle();
+    }
+
+    if (!isClickInsideMenu && !isClickOnMenuIcon && menuBtn.getAttribute("aria-expanded") === "true") {
+        handleMenuToggle();
+    }
+});
 
 // carousel slide logic
 carouselButtons.forEach(button => {
