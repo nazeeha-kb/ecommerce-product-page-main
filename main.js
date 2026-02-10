@@ -6,8 +6,14 @@ const menuBtn = document.getElementById("menu-btn");
 const menuIcon = document.getElementById("menu-icon");
 const overlay = document.getElementById("overlay");
 
+// Carousel
 const carouselSlides = document.querySelectorAll("#carousel-slide");
 const carouselButtons = document.querySelectorAll("#carousel-btn");
+const carousel = document.querySelector("[data-carousel]")
+
+// Carousel - thumnail navigation
+const thumbnailButtons = document.querySelectorAll("#nav-btn-thumbnail")
+const thumbnailContainer = document.getElementById("thumbnail-container")
 
 // items counter
 const itemsCounter = document.getElementById("items-counter");
@@ -124,12 +130,11 @@ document.addEventListener("click", (e) => {
 carouselButtons.forEach(button => {
     button.addEventListener("click", () => {
         const offset = button.dataset.carouselButton === 'next' ? 1 : -1;
-        const slides = button.closest("[data-carousel]").querySelector("[data-slides]");
-        const activeSlide = slides.querySelector("[data-active]");
+        const slideContainer = button.closest("[data-carousel]").querySelector("[data-slides]");
+        const activeSlide = slideContainer.querySelector("[data-active]");
 
         // [...slides.children] converts this to array
         let newIndex = [...slides.children].indexOf(activeSlide) + offset;
-        console.log(newIndex)
 
         // looping
         if (newIndex < 0) newIndex = slides.children.length - 1
@@ -137,6 +142,25 @@ carouselButtons.forEach(button => {
 
         slides.children[newIndex].dataset.active = true
         delete activeSlide.dataset.active
+    })
+})
+
+// thumbnail button carousel navigation.
+
+thumbnailButtons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+        // keep dataset same like data.sno="1" for both the slide and thumbnail and navigate leveraging that
+        // if the clicked button's id is 1, let [data-active] be true for slide with id="1"
+        // no slide has [data-active]
+        const slideContainer = carousel.querySelector("[data-slides]");
+        const activeSlide = slideContainer.querySelector("[data-active]");
+        delete activeSlide.dataset.active
+        const activeButton = thumbnailContainer.querySelector("[data-active]")
+        delete activeButton.dataset.active
+
+        // Select the right slide
+        carouselSlides[i].dataset.active = true;
+        button.dataset.active = true;
     })
 })
 

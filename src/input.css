@@ -59,6 +59,8 @@
         @apply object-contain;
     }
 
+    /* carousel nav button */
+
     .thumbnail-img-cont {
         @apply rounded-lg overflow-hidden cursor-pointer relative;
     }
