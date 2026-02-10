@@ -21,7 +21,7 @@
   <!-- overlay: 75% opacity-->
   <div class="inset-0 bg-black/75 fixed transition-opacity z-10 hidden" id="overlay"></div>
 
-  <div class="kumbh-sans md:max-w-260 max-w-110 md:outline-none outline outline-cust-graysish-blue-800 ">
+  <div class="kumbh-sans md:max-w-260 max-w-110 md:outline-none outline outline-cust-graysish-blue-800">
     <header class="flex items-center justify-between md:py-8 md:pb-10 px-6 pt-4 pb-6">
       <div class="flex items-center gap-4">
         <button class="size-4 text-cust-graysish-blue-800 z-30 md:hidden block" aria-label="menu" aria-expanded="false"
@@ -58,7 +58,8 @@
         <button class="size-4 text-cust-graysish-blue-800 hover:text-black relative" id="cart-btn" aria-label="basket"
           aria-expanded="false">
           <i class="fa-solid fa-cart-shopping text-xl"></i>
-          <small class="bg-cust-orange text-white absolute -top-2 z-10 text-xs rounded-full px-2 hidden" id="cart-badge">0</small>
+          <small class="bg-cust-orange text-white absolute -top-2 z-20 text-xs rounded-full px-2 hidden"
+            id="cart-badge">0</small>
         </button>
 
         <!-- profile avatar -->
@@ -75,7 +76,7 @@
 
       <!-- basket -->
       <dialog id="basket"
-        class="absolute bg-white mt-2 mx-2 rounded-xl shadow-2xl shadow-cust-grayish-blue-800 text-cust-graysish-blue-800 z-10 max-w-90 w-[95%] md:-top-28 md:left-180">
+        class="absolute bg-white mt-2 mx-2 rounded-xl shadow-2xl shadow-cust-grayish-blue-800 text-cust-graysish-blue-800 z-20 max-w-90 w-[95%] md:-top-28 md:left-180">
 
         <div class="font-bold pt-4 pb-6 px-6 text-black">
           Cart
@@ -116,7 +117,7 @@
       </dialog>
 
       <!-- shoe carousel -->
-      <article>
+      <article class="">
 
         <div id="carousel" class="relative" data-carousel>
           <button id="carousel-btn" data-carousel-button="prev"
@@ -125,36 +126,36 @@
           <button id="carousel-btn" data-carousel-button="next"
             class="absolute hover:bg-black/80 hover:text-white top-30 right-4 bg-white rounded-full size-10 text-center md:hidden block"
             aria-label="button to next image"><i class="fa-solid fa-arrow-right"></i></button>
-          <ul id="carousel-track" class="overflow-hidden" data-slides>
-            <li class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg" alt="shoe image #1"
-                class="carousel-image">
-            </li>
-            <li class="slide" id="carousel-slide"><img src="/images/image-product-2.jpg" alt="shoe image #2"
-                class="carousel-image"></li>
-            <li class="slide" id="carousel-slide"><img src="/images/image-product-3.jpg" alt="shoe image #3"
-                class="carousel-image"></li>
-            <li class="slide" id="carousel-slide"><img src="/images/image-product-4.jpg" alt="shoe image #4"
-                class="carousel-image"></li>
-          </ul>
+          <div id="carousel-track" class="overflow-hidden" data-slides>
+            <button class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg" alt="shoe image #1"
+                class="slide-image">
+            </button>
+            <button class="slide" id="carousel-slide"><img src="/images/image-product-2.jpg" alt="shoe image #2"
+                class="slide-image"></button>
+            <button class="slide" id="carousel-slide"><img src="/images/image-product-3.jpg" alt="shoe image #3"
+                class="slide-image"></button>
+            <button class="slide" id="carousel-slide"><img src="/images/image-product-4.jpg" alt="shoe image #4"
+                class="slide-image"></button>
+          </div>
         </div>
 
         <!-- desktop shoe thumbnail images bar -->
 
-        <div class="carousel-nav md:flex hidden lg:gap-8 gap-4 pt-6" id="thumbnail-container">
-          <button class="thumbnail-img-cont group" id="nav-btn-thumbnail" data-active><img src="/images/image-product-1-thumbnail.jpg"
-              alt="shoe image #1 thumbnail" class="thumbnail-img">
+        <div class="carousel-nav md:flex hidden lg:gap-8 gap-4 pt-6" id="cara-thumbnail-container">
+          <button class="thumbnail-img-cont group" id="cara-nav-btn-thumbnail" data-active><img
+              src="/images/image-product-1-thumbnail.jpg" alt="shoe image #1 thumbnail" class="thumbnail-img">
             <div class="thumbnail-overlay"></div>
           </button>
-          <button class="thumbnail-img-cont group" id="nav-btn-thumbnail"><img src="/images/image-product-2-thumbnail.jpg"
-              alt="shoe image #2 thumbnail" class="thumbnail-img">
+          <button class="thumbnail-img-cont group" id="cara-nav-btn-thumbnail"><img
+              src="/images/image-product-2-thumbnail.jpg" alt="shoe image #2 thumbnail" class="thumbnail-img">
             <div class="thumbnail-overlay"></div>
           </button>
-          <button class="thumbnail-img-cont group" id="nav-btn-thumbnail"><img src="/images/image-product-3-thumbnail.jpg"
-              alt="shoe image #3 thumbnail" class="thumbnail-img">
+          <button class="thumbnail-img-cont group" id="cara-nav-btn-thumbnail"><img
+              src="/images/image-product-3-thumbnail.jpg" alt="shoe image #3 thumbnail" class="thumbnail-img">
             <div class="thumbnail-overlay"></div>
           </button>
-          <button class="thumbnail-img-cont group" id="nav-btn-thumbnail"><img src="/images/image-product-4-thumbnail.jpg"
-              alt="shoe image #4 thumbnail" class="thumbnail-img">
+          <button class="thumbnail-img-cont group" id="cara-nav-btn-thumbnail"><img
+              src="/images/image-product-4-thumbnail.jpg" alt="shoe image #4 thumbnail" class="thumbnail-img">
             <div class="thumbnail-overlay"></div>
           </button>
         </div>
@@ -162,32 +163,47 @@
 
 
       <!-- desktop lightbox carousel -->
-      <article class="hidden" id="lightbox">
-
-        <div id="carousel" class="relative" data-carousel>
-          <button id="carousel-btn" data-carousel-button="prev"
-            class="absolute hover:bg-black hover:text-white top-30 left-4 bg-white rounded-full size-10 text-center md:hidden block"
+      <article class="z-20 absolute w-120 left-80 bottom-4 hidden" id="lightbox" aria-expanded="true">
+        <div id="lightbox" class="relative" data-lightbox>
+          <button id="lightbox-btn" data-lightbox-button="prev"
+            class="absolute hover:bg-black hover:text-white top-50 -left-6 bg-white rounded-full size-14 text-center"
             aria-label="button to previous image"><i class="fa-solid fa-arrow-left"></i></button>
-          <button id="carousel-btn" data-carousel-button="next"
-            class="absolute hover:bg-black/80 hover:text-white top-30 right-4 bg-white rounded-full size-10 text-center md:hidden block"
+          <button id="lightbox-btn" data-lightbox-button="next"
+            class="absolute hover:bg-black/80 hover:text-white top-50 -right-6 bg-white rounded-full size-14 text-center"
             aria-label="button to next image"><i class="fa-solid fa-arrow-right"></i></button>
-          <ul id="carousel-track" class="overflow-hidden" data-slides>
-            <li class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg" alt="shoe image #1"
-                class="carousel-image">
+          <ul id="lightbox-track" class="overflow-hidden" data-slides>
+            <li class="slide" id="lightbox-slide" data-active><img src="/images/image-product-1.jpg" alt="shoe image #1"
+                class="slide-image">
             </li>
-            <li class="slide" id="carousel-slide">
-              <img src="/images/image-product-2.jpg" alt="shoe image #2" class="carousel-image">
-            </li>
-            <li class="slide" id="carousel-slide"><img src="/images/image-product-3.jpg" alt="shoe image #3"
-                class="carousel-image">
-            </li>
-            <li class="slide" id="carousel-slide"><img src="/images/image-product-4.jpg" alt="shoe image #4"
-                class="carousel-image">
-            </li>
+            <li class="slide" id="lightbox-slide"><img src="/images/image-product-2.jpg" alt="shoe image #2"
+                class="slide-image"></li>
+            <li class="slide" id="lightbox-slide"><img src="/images/image-product-3.jpg" alt="shoe image #3"
+                class="slide-image"></li>
+            <li class="slide" id="lightbox-slide"><img src="/images/image-product-4.jpg" alt="shoe image #4"
+                class="slide-image"></li>
           </ul>
         </div>
 
         <!-- desktop shoe thumbnail images bar -->
+
+        <div class="lightbox-nav md:flex hidden lg:gap-8 gap-4 pt-6" id="light-thumbnail-container">
+          <button class="thumbnail-img-cont group" id="light-nav-btn-thumbnail" data-active><img
+              src="/images/image-product-1-thumbnail.jpg" alt="shoe image #1 thumbnail" class="thumbnail-img">
+            <div class="thumbnail-overlay"></div>
+          </button>
+          <button class="thumbnail-img-cont group" id="light-nav-btn-thumbnail"><img
+              src="/images/image-product-2-thumbnail.jpg" alt="shoe image #2 thumbnail" class="thumbnail-img">
+            <div class="thumbnail-overlay"></div>
+          </button>
+          <button class="thumbnail-img-cont group" id="light-nav-btn-thumbnail"><img
+              src="/images/image-product-3-thumbnail.jpg" alt="shoe image #3 thumbnail" class="thumbnail-img">
+            <div class="thumbnail-overlay"></div>
+          </button>
+          <button class="thumbnail-img-cont group" id="light-nav-btn-thumbnail"><img
+              src="/images/image-product-4-thumbnail.jpg" alt="shoe image #4 thumbnail" class="thumbnail-img">
+            <div class="thumbnail-overlay"></div>
+          </button>
+        </div>
       </article>
 
       <article class="px-6 py-4 lg:pt-10 md:pt-4">

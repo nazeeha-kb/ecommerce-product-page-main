@@ -12,8 +12,18 @@ const carouselButtons = document.querySelectorAll("#carousel-btn");
 const carousel = document.querySelector("[data-carousel]")
 
 // Carousel - thumnail navigation
-const thumbnailButtons = document.querySelectorAll("#nav-btn-thumbnail")
-const thumbnailContainer = document.getElementById("thumbnail-container")
+const caraThumbnailButtons = document.querySelectorAll("#cara-nav-btn-thumbnail")
+const caraThumbnailContainer = document.getElementById("cara-thumbnail-container")
+
+// Lightbox
+const lightboxSlides = document.querySelectorAll("#lightbox-slide");
+const lightboxButtons = document.querySelectorAll("#lightbox-btn");
+const lightbox = document.querySelector("[data-lightbox]")
+const lightboxParent = document.getElementById("lightbox")
+
+// lightbox - thumnail navigation
+const lightThumbnailButtons = document.querySelectorAll("#light-nav-btn-thumbnail")
+const lightThumbnailContainer = document.getElementById("light-thumbnail-container")
 
 // items counter
 const itemsCounter = document.getElementById("items-counter");
@@ -107,25 +117,6 @@ const handleCartToggle = () => {
 
 }
 
-// Close cart and menu on outside click
-document.addEventListener("click", (e) => {
-    // menu
-    const isClickInsideMenu = menu.contains(e.target);
-    const isClickOnMenuIcon = menuIcon.contains(e.target);
-
-    // cart
-    const isClickInsideCart = basket.contains(e.target);
-    const isClickOnBtn = cartBtn.contains(e.target);
-
-    if (!isClickInsideCart && !isClickOnBtn && cartBtn.getAttribute("aria-expanded") === "true") {
-        handleCartToggle();
-    }
-
-    if (!isClickInsideMenu && !isClickOnMenuIcon && menuBtn.getAttribute("aria-expanded") === "true") {
-        handleMenuToggle();
-    }
-});
-
 // carousel slide logic
 carouselButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -134,20 +125,54 @@ carouselButtons.forEach(button => {
         const activeSlide = slideContainer.querySelector("[data-active]");
 
         // [...slides.children] converts this to array
-        let newIndex = [...slides.children].indexOf(activeSlide) + offset;
-
+        let newIndex = [...slideContainer.children].indexOf(activeSlide) + offset;
         // looping
-        if (newIndex < 0) newIndex = slides.children.length - 1
-        if (newIndex >= slides.children.length) newIndex = 0
+        if (newIndex < 0) newIndex = slideContainer.children.length - 1
+        if (newIndex >= slideContainer.children.length) newIndex = 0
 
-        slides.children[newIndex].dataset.active = true
+        slideContainer.children[newIndex].dataset.active = true
         delete activeSlide.dataset.active
     })
 })
 
+// Lightbox slide logic
+
+lightboxButtons.forEach(button => {
+    button.addEventListener("click", () => {
+
+        const offset = button.dataset.lightboxButton === 'next' ? 1 : -1;
+        const slideContainer = button.closest("[data-lightbox]").querySelector("[data-slides]");
+        const activeSlide = slideContainer.querySelector("[data-active]");
+
+        // [...slides.children] converts this to array
+        let newIndex = [...slideContainer.children].indexOf(activeSlide) + offset;
+
+        // looping
+        if (newIndex < 0) newIndex = slideContainer.children.length - 1
+        if (newIndex >= slideContainer.children.length) newIndex = 0
+
+        slideContainer.children[newIndex].dataset.active = true
+        delete activeSlide.dataset.active
+
+        // Active thumbnail change
+
+        const activeButton = lightThumbnailContainer.querySelector("[data-active]")
+        delete activeButton.dataset.active
+
+        let thumbnailIndex = [...lightThumbnailContainer.children].indexOf(activeSlide) + offset;
+
+        // looping
+        if (thumbnailIndex < 0) thumbnailIndex = slideContainer.children.length - 1
+        if (thumbnailIndex >= slideContainer.children.length) thumbnailIndex = 0
+
+        lightThumbnailContainer.children[newIndex].dataset.active = true
+    })
+})
+
+
 // thumbnail button carousel navigation.
 
-thumbnailButtons.forEach((button, i) => {
+caraThumbnailButtons.forEach((button, i) => {
     button.addEventListener("click", () => {
         // keep dataset same like data.sno="1" for both the slide and thumbnail and navigate leveraging that
         // if the clicked button's id is 1, let [data-active] be true for slide with id="1"
@@ -155,7 +180,7 @@ thumbnailButtons.forEach((button, i) => {
         const slideContainer = carousel.querySelector("[data-slides]");
         const activeSlide = slideContainer.querySelector("[data-active]");
         delete activeSlide.dataset.active
-        const activeButton = thumbnailContainer.querySelector("[data-active]")
+        const activeButton = caraThumbnailContainer.querySelector("[data-active]")
         delete activeButton.dataset.active
 
         // Select the right slide
@@ -164,6 +189,24 @@ thumbnailButtons.forEach((button, i) => {
     })
 })
 
+// Lightbox button carousel navigation.
+
+lightThumbnailButtons.forEach((button, i) => {
+    button.addEventListener("click", () => {
+        // keep dataset same like data.sno="1" for both the slide and thumbnail and navigate leveraging that
+        // if the clicked button's id is 1, let [data-active] be true for slide with id="1"
+        // no slide has [data-active]
+        const slideContainer = lightbox.querySelector("[data-slides]");
+        const activeSlide = slideContainer.querySelector("[data-active]");
+        delete activeSlide.dataset.active
+        const activeButton = lightThumbnailContainer.querySelector("[data-active]")
+        delete activeButton.dataset.active
+
+        // Select the right slide
+        lightboxSlides[i].dataset.active = true;
+        button.dataset.active = true;
+    })
+})
 // Items counter logic
 
 plusBtn.addEventListener("click", () => addCount())
@@ -221,3 +264,44 @@ deleteItemBtn.addEventListener("click", () => {
     cartDetails.classList.add("hidden")
     cartBadge.classList.add("hidden")
 })
+
+// Lightbox opens on click of carousel slide
+
+carouselSlides.forEach(slide => {
+    slide.addEventListener("click", () => {
+        lightboxParent.setAttribute("aria-expanded", true)
+        lightboxParent.classList.remove("hidden");
+        lightboxParent.classList.add("md:block", "hidden")
+        overlay.classList.remove("hidden");
+    })
+});
+
+// Close cart, menu and lightbox on outside click
+document.addEventListener("click", (e) => {
+    // menu
+    const isClickInsideMenu = menu.contains(e.target);
+    const isClickOnMenuIcon = menuIcon.contains(e.target);
+
+    // cart
+    const isClickInsideCart = basket.contains(e.target);
+    const isClickOnBtn = cartBtn.contains(e.target);
+
+    // lightbox
+    const isClickInsideLightbox = lightboxParent.contains(e.target);
+    const isClickOnSlide = carousel.contains(e.target);
+
+    if (!isClickInsideCart && !isClickOnBtn && cartBtn.getAttribute("aria-expanded") === "true") {
+        handleCartToggle();
+    }
+
+    if (!isClickInsideMenu && !isClickOnMenuIcon && menuBtn.getAttribute("aria-expanded") === "true") {
+        handleMenuToggle();
+    }
+
+    if (!isClickInsideLightbox && !isClickOnSlide && lightboxParent.getAttribute("aria-expanded") === "true") {
+        lightboxParent.classList.add("hidden");
+        lightboxParent.classList.remove("md:block")
+        overlay.classList.add("hidden");
+    }
+
+});

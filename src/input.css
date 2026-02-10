@@ -43,7 +43,7 @@
         @apply font-bold text-black bg-cust-orange hover:bg-cust-orange/60 w-full text-center py-4 rounded-xl px-6 flex gap-4 items-center justify-center;
     }
 
-    .carousel-img {
+    .slide-img {
         @apply md:object-contain object-cover h-full w-full;
     }
 
