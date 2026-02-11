@@ -70,7 +70,7 @@
     }
 
     .desktop-nav-item {
-        @apply hover:text-black decoration-cust-orange decoration-4 underline-offset-52 hover:underline;
+        @apply hover:text-black decoration-cust-orange/0 decoration-4 underline-offset-52 underline hover:decoration-cust-orange transition-all;
     }
 }
 
