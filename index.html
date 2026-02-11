@@ -30,6 +30,7 @@
           <img src="/images/logo.svg" alt="logo sneakers" class="object-contain">
         </div>
         <nav>
+          <!-- hamburger menu -->
           <div
             class="fixed left-0 -translate-x-full transform transition-transform duration-500 top-0 z-20 bg-white h-screen font-bold pt-20 pr-34 pl-6 md:hidden block"
             id="menu" inert="">
@@ -41,13 +42,14 @@
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
+          <!-- desktop menu -->
           <div>
             <ul class="flex-row gap-6 md:flex hidden text-cust-graysish-blue-800 pl-8 items-center">
-              <li><a href="#">Collections</a></li>
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li class="desktop-nav-item"><a href="#">Collections</a></li>
+              <li class="desktop-nav-item"><a href="#">Men</a></li>
+              <li class="desktop-nav-item"><a href="#">Women</a></li>
+              <li class="desktop-nav-item"><a href="#">About</a></li>
+              <li class="desktop-nav-item"><a href="#">Contact</a></li>
             </ul>
           </div>
       </div>
@@ -76,7 +78,7 @@
 
       <!-- basket -->
       <dialog id="basket"
-        class="absolute bg-white mt-2 mx-2 rounded-xl shadow-2xl shadow-cust-grayish-blue-800 text-cust-graysish-blue-800 z-20 max-w-90 w-[95%] md:-top-28 md:left-180">
+        class="absolute bg-white mt-2 mx-2 rounded-xl shadow-2xl shadow-cust-grayish-blue-800 text-cust-graysish-blue-800 z-20 max-w-90 w-[95%] md:-top-28 xl:translate-x-170 lg:translate-x-150 md:translate-x-120 sm:translate-x-8">
 
         <div class="font-bold pt-4 pb-6 px-6 text-black">
           Cart
@@ -127,8 +129,8 @@
             class="absolute hover:bg-black/80 hover:text-white top-30 right-4 bg-white rounded-full size-10 text-center md:hidden block"
             aria-label="button to next image"><i class="fa-solid fa-arrow-right"></i></button>
           <div id="carousel-track" class="overflow-hidden" data-slides>
-            <button class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg" alt="shoe image #1"
-                class="slide-image">
+            <button class="slide" id="carousel-slide" data-active><img src="/images/image-product-1.jpg"
+                alt="shoe image #1" class="slide-image">
             </button>
             <button class="slide" id="carousel-slide"><img src="/images/image-product-2.jpg" alt="shoe image #2"
                 class="slide-image"></button>
@@ -163,7 +165,8 @@
 
 
       <!-- desktop lightbox carousel -->
-      <article class="z-20 absolute w-120 left-80 bottom-4 hidden" id="lightbox" aria-expanded="true">
+      <article class="z-20 absolute lg:w-120 w-110 left-1/2 -translate-x-1/2 bottom-4 hidden" id="lightbox"
+        aria-expanded="true" aria-label="lightbox">
         <div id="lightbox" class="relative" data-lightbox>
           <button id="lightbox-btn" data-lightbox-button="prev"
             class="absolute hover:bg-black hover:text-white top-50 -left-6 bg-white rounded-full size-14 text-center"
@@ -232,10 +235,10 @@
           <!-- items counter -->
           <div id="items-counter"
             class="bg-cust-grayish-blue-200 w-full flex justify-between items-center rounded-lg px-6 py-4 md:mb-0 mb-5 md:w-2/3">
-            <button type="button" id="minus"><i
+            <button type="button" id="minus" aria-label="subtract"><i
                 class="fa-solid fa-minus text-cust-orange hover:text-cust-orange/60"></i></button>
             <span id="count" class="font-bold">0</span>
-            <button type="button" id="plus"><i
+            <button type="button" id="plus" aria-label="add"><i
                 class="fa-solid fa-plus text-cust-orange hover:text-cust-orange/60"></i></button>
           </div>
 

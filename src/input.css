@@ -68,6 +68,10 @@
     .thumbnail-overlay {
         @apply group-hover:bg-cust-grayish-blue-200/60 absolute top-0 outline h-full w-full;
     }
+
+    .desktop-nav-item {
+        @apply hover:text-black decoration-cust-orange decoration-4 underline-offset-52 hover:underline;
+    }
 }
 
 .thumbnail-img-cont[data-active]{
