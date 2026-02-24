@@ -21,7 +21,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](ecommerce-product-page-main-tau-three.vercel.app)
+- Live Site URL: [live site URL](https://ecommerce-product-page-main-tau-three.vercel.app)
 
 ## My process
 
